@@ -1,0 +1,1 @@
+UPDATE public.orders SET status = 'completed' WHERE status = 'paid';

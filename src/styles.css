@@ -1,0 +1,249 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@font-face {
+  font-family: "Qurovademo Light";
+  src: url("/fonts/QurovademoLight.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-success: var(--success);
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --radius: 1rem;
+
+  /* Modern app palette — soft neutral with electric brand */
+  --background: oklch(0.99 0.003 250);
+  --foreground: oklch(0.18 0.02 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.02 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.02 260);
+
+  --brand: oklch(0.55 0.22 268);           /* indigo/violet */
+  --brand-soft: oklch(0.96 0.025 268);
+  --primary: var(--brand);
+  --primary-foreground: oklch(1 0 0);
+
+  --secondary: oklch(0.965 0.005 250);
+  --secondary-foreground: oklch(0.18 0.02 260);
+  --muted: oklch(0.965 0.005 250);
+  --muted-foreground: oklch(0.5 0.015 260);
+  --accent: oklch(0.96 0.025 268);
+  --accent-foreground: var(--brand);
+  --success: oklch(0.65 0.15 155);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.93 0.005 260);
+  --input: oklch(0.93 0.005 260);
+  --ring: var(--brand);
+
+  --shadow-soft: 0 1px 2px oklch(0.18 0.02 260 / 0.04), 0 4px 16px oklch(0.18 0.02 260 / 0.06);
+  --shadow-card: 0 1px 3px oklch(0.18 0.02 260 / 0.05), 0 8px 24px oklch(0.18 0.02 260 / 0.04);
+
+  /* Subtle geometric grid background */
+  --grid-line: #e5e7eb;
+  --grid-bg: #ffffff;
+}
+
+.dark {
+  --background: oklch(0.16 0.015 260);
+  --foreground: oklch(0.97 0.005 250);
+  --card: oklch(0.21 0.018 260);
+  --card-foreground: oklch(0.97 0.005 250);
+  --popover: oklch(0.21 0.018 260);
+  --popover-foreground: oklch(0.97 0.005 250);
+  --brand: oklch(0.7 0.2 268);
+  --brand-soft: oklch(0.28 0.05 268);
+  --primary: var(--brand);
+  --primary-foreground: oklch(0.16 0.015 260);
+  --secondary: oklch(0.25 0.015 260);
+  --secondary-foreground: oklch(0.97 0.005 250);
+  --muted: oklch(0.25 0.015 260);
+  --muted-foreground: oklch(0.7 0.01 260);
+  --accent: oklch(0.28 0.05 268);
+  --accent-foreground: oklch(0.97 0.005 250);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: var(--brand);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    overscroll-behavior-y: none;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-sans);
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+
+  .font-mono { font-family: var(--font-mono); }
+
+  .app-shell {
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 80px);
+  }
+
+  .gradient-brand {
+    background-color: var(--brand);
+  }
+
+  .grid-bg {
+    position: relative;
+    background-color: var(--grid-bg);
+    isolation: isolate;
+  }
+  .grid-bg::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: var(--grid-bg);
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: top left;
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+
+  .input {
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border);
+    background-color: var(--background);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    outline: none;
+  }
+  .input:focus {
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand) 18%, transparent);
+  }
+
+  /* ===== Admin design system utilities ===== */
+  .admin-card {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-soft);
+  }
+  .admin-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.875rem;
+  }
+  .admin-table thead th {
+    position: sticky;
+    top: 0;
+    background-color: color-mix(in oklab, var(--secondary) 70%, var(--background));
+    color: var(--muted-foreground);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.625rem 0.875rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .admin-table tbody td {
+    padding: 0.75rem 0.875rem;
+    border-bottom: 1px solid color-mix(in oklab, var(--border) 60%, transparent);
+    vertical-align: middle;
+  }
+  .admin-table tbody tr:last-child td { border-bottom: none; }
+  .admin-table tbody tr:hover { background-color: color-mix(in oklab, var(--secondary) 50%, transparent); }
+  .admin-table .num { text-align: right; font-family: var(--font-mono); }
+
+  .admin-skeleton {
+    background: linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--secondary) 60%, transparent) 0%,
+      color-mix(in oklab, var(--secondary) 100%, transparent) 50%,
+      color-mix(in oklab, var(--secondary) 60%, transparent) 100%
+    );
+    background-size: 200% 100%;
+    animation: admin-shimmer 1.4s infinite linear;
+    border-radius: 0.5rem;
+  }
+  @keyframes admin-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  .admin-fab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 3.25rem;
+    padding: 0 1.25rem;
+    border-radius: 9999px;
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    font-size: 0.875rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-card);
+  }
+}
