@@ -1,9 +1,0 @@
-node_modules/
-dist/
-.netlify/
-.vercel/
-.env
-.env.local
-.env.*.local
-*.log
-.DS_Store
