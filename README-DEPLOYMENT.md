@@ -1,13 +1,19 @@
-# StudyMart deployment: Vercel
+# StudyMart deployment: vercel
 
-This package is configured for TanStack Start on Vercel using Nitro, the supported Vercel deployment path.
+This package uses the official TanStack Start Vite deployment integration for this platform.
 
-## Deploy
+## Required environment variables
 
-1. Import/connect this repository in Vercel.
-2. Vercel will detect the `tanstack-start` framework from `vercel.json`.
-3. Set the Supabase variables from `.env.example` in Vercel Project Settings > Environment Variables.
-4. Deploy.
+The package includes \.env.production with the public Supabase URL/publishable key so the browser client can boot immediately.
 
-Build command: `npm run build`
-Node.js: `22.x`
+Set these server-side values in the vercel dashboard before using server APIs:
+- SUPABASE_URL
+- SUPABASE_PUBLISHABLE_KEY
+- SUPABASE_SERVICE_ROLE_KEY
+
+Never put SUPABASE_SERVICE_ROLE_KEY in a VITE_ variable or in client code.
+
+## Build
+
+npm install
+npm run build
