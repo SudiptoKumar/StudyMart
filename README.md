@@ -278,3 +278,6 @@ Use the development server for manual verification of storefront, authentication
 The repository contains both `package-lock.json` and `bun.lockb`. Use one package manager consistently for a given environment.
 
 The existing `public/favicon.ico` is the StudyMart favicon and is retained as part of the application assets.
+## Deployment
+
+This bundle is configured for Vercel with Nitro for TanStack Start. See `README-DEPLOYMENT.md` for deployment steps.
